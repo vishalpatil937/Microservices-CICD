@@ -1,0 +1,6 @@
+projectKey=com.xoriant:microservice-multimodule
+serverUrl=http://10.20.14.81:9000
+serverVersion=6.7.6.38781
+dashboardUrl=http://10.20.14.81:9000/dashboard/index/com.xoriant:microservice-multimodule
+ceTaskId=AWuSClB7IHTYT6_VjM7F
+ceTaskUrl=http://10.20.14.81:9000/api/ce/task?id=AWuSClB7IHTYT6_VjM7F
