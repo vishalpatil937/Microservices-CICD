@@ -24,7 +24,6 @@ public class MicroservicesController {
 	
 	@GetMapping("/getfromservice2")
 	public String FundsAlloc() {
-		System.out.println("hola amigo");
 		return "FundsAlloc";
 	}
 }

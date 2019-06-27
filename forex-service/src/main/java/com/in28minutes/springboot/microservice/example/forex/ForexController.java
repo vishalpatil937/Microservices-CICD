@@ -8,11 +8,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ForexController {
   
-  @Autowired
   private Environment environment;
   
-  @Autowired
   private ExchangeValueRepository repository;
+  
+  @Autowired
+  public ForexController(Environment environment,ExchangeValueRepository repository) {
+	this.environment=environment;
+	this.repository=repository;
+  }
+  
   
   @GetMapping("/currency-exchange/from/{from}/to/{to}")
   public ExchangeValue retrieveExchangeValue
@@ -22,7 +27,7 @@ public class ForexController {
         repository.findByFromAndTo(from, to);
     
     exchangeValue.setPort(
-        Integer.parseInt(environment.getProperty("local.server.port")));
+        Integer.parseInt(environment.getProperty("server.port")));
     
     return exchangeValue;
   }
