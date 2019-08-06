@@ -3,10 +3,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.1.5.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<groupId>com.xoriant</groupId>
+		<artifactId>microservice-multimodule</artifactId>
+		<version>1.0</version>
+		<relativePath>..</relativePath>
 	</parent>
 	<groupId>com.eureka</groupId>
 	<artifactId>microservice2</artifactId>
@@ -23,10 +23,12 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
+			<version>2.1.1.RELEASE</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+			<version>2.1.1.RELEASE</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
@@ -36,13 +38,14 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
+			<version>2.1.1.RELEASE</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-          <groupId>org.springframework.cloud</groupId>
-          <artifactId>spring-cloud-starter-feign</artifactId>
-          <version>1.4.6.RELEASE</version>
-    </dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-feign</artifactId>
+			<version>1.4.6.RELEASE</version>
+		</dependency>
 	</dependencies>
 
 	<dependencyManagement>
@@ -64,6 +67,21 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>2.12</version>
+					<configuration>
+						<argLine>${argLine}</argLine>
+					</configuration>
+				</plugin>
+
+			</plugins>
+		</pluginManagement>
+
 	</build>
 
 </project>

@@ -17,6 +17,12 @@
 		<module>forex-service</module>
 	</modules>
 
+	<properties>
+		<jacoco.reportPath>${project.basedir}/../target/jacoco.exec</jacoco.reportPath>
+		<sonar.jacoco.reportPaths>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPaths>
+		<sonar.language>java</sonar.language>
+		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+	</properties>
 	<!-- ************* SONAR-MAVEN ************* -->
 	<!-- For multimodule projects the soanr plugin should be defined as follows -->
 	<build>
@@ -47,7 +53,7 @@
 					<!-- <configLocation>sun_checks.xml</configLocation> -->
 					<configLocation>sun_checks.xml</configLocation>
 					<failOnViolation>true</failOnViolation>
-					<maxAllowedViolations>100</maxAllowedViolations>
+					<maxAllowedViolations>200</maxAllowedViolations>
 				</configuration>
 				<executions>
 					<execution>
@@ -64,58 +70,43 @@
 				<version>0.8.3</version>
 				<executions>
 					<execution>
-						<id>prepare-agent</id>
+						<id>agent-for-ut</id>
 						<goals>
 							<goal>prepare-agent</goal>
 						</goals>
-					</execution>
-
-					<execution>
-						<id>check</id>
-						<goals>
-							<goal>check</goal>
-						</goals>
 						<configuration>
-							<rules>
-								<rule>
-									<element>BUNDLE</element>
-									<limits>
-										<limit implementation="org.jacoco.report.check.Limit">
-											<counter>INSTRUCTION</counter>
-											<value>COVEREDRATIO</value>
-											<minimum>0.0</minimum>
-										</limit>
-										<!-- <limit implementation="org.jacoco.report.check.Limit"> <counter>CLASS</counter> 
-											<value>MISSEDCOUNT</value> <maximum>0</maximum> </limit> -->
-										<limit implementation="org.jacoco.report.check.Limit">
-											<counter>LINE</counter>
-											<value>COVEREDRATIO</value>
-											<minimum>0.8</minimum>
-										</limit>
-									</limits>
-									<excludes>
-										<exclude>*Test</exclude>
-									</excludes>
-								</rule>
-							</rules>
+							<append>true</append>
+							<destFile>${sonar.jacoco.reportPath}</destFile>
+							<propertyName>surefireArgLine</propertyName>
 						</configuration>
 					</execution>
-
-					<execution>
-						<id>report</id>
-						<phase>prepare-package</phase>
-						<goals>
-							<goal>report</goal>
-						</goals>
-					</execution>
-					<execution>
-						<id>post-unit-test</id>
-						<phase>test</phase>
-						<goals>
-							<goal>report</goal>
-						</goals>
-					</execution>
 				</executions>
+				<!-- <executions> <execution> <id>prepare-agent</id> <goals> <goal>prepare-agent</goal> 
+					</goals> <configuration> <append>true</append> <destFile>${jacoco.reportPath}</destFile> 
+					</configuration> </execution> <execution> <id>check</id> <goals> <goal>check</goal> 
+					</goals> <configuration> <rules> <rule> <element>BUNDLE</element> <limits> 
+					<limit implementation="org.jacoco.report.check.Limit"> <counter>INSTRUCTION</counter> 
+					<value>COVEREDRATIO</value> <minimum>0.0</minimum> </limit> <limit implementation="org.jacoco.report.check.Limit"> 
+					<counter>CLASS</counter> <value>MISSEDCOUNT</value> <maximum>0</maximum> 
+					</limit> <limit implementation="org.jacoco.report.check.Limit"> <counter>LINE</counter> 
+					<value>COVEREDRATIO</value> <minimum>0.8</minimum> </limit> </limits> <excludes> 
+					<exclude>*Test</exclude> </excludes> </rule> </rules> </configuration> </execution> 
+					<execution> <id>report</id> <phase>prepare-package</phase> <goals> <goal>report</goal> 
+					</goals> </execution> <execution> <id>post-unit-test</id> <phase>test</phase> 
+					<goals> <goal>report</goal> </goals> </execution> </executions> -->
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.19.1</version>
+				<configuration>
+					<printSummary>false</printSummary>
+					<redirectTestOutputToFile>true</redirectTestOutputToFile>
+					<forkCount>3</forkCount>
+					<reuseForks>true</reuseForks>
+					<argLine>${surefireArgLine} -Xmx1024m -noverify</argLine>
+				</configuration>
 			</plugin>
 
 			<plugin>
