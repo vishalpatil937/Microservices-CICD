@@ -3,7 +3,7 @@
 /usr/local/sbin/oc project xoriant-cicd
 
 /usr/local/sbin/oc delete all --selector app=eureka-server
-/usr/local/sbin/oc delete all --selector app=Microservice
+/usr/local/sbin/oc delete all --selector app=microservice
 /usr/local/sbin/oc delete all --selector app=microservice2
 /usr/local/sbin/oc delete all --selector app=forex-service
 /usr/local/sbin/oc delete all --selector app=api-gateway
