@@ -184,5 +184,18 @@
 			</properties>
 		</profile>
 	</profiles>
-	<!-- ************* SONAR-MAVEN ************* -->
+	<distributionManagement>
+
+    <repository>
+        <id>releases</id>
+        <name>Releases</name>
+        <url>http://10.20.14.81:8081/repository/citi-maven-repo/</url>
+    </repository>
+
+    <snapshotRepository>
+        <id>snapshots</id>
+        <name>Snapshots</name>
+        <url>http://10.20.14.81:8081/repository/citi-maven-repo/</url>
+    </snapshotRepository>
+</distributionManagement>
 </project>
