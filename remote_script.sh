@@ -1,7 +1,7 @@
 #!/bin/sh
 /usr/local/sbin/oc login -u system -p admin --server=https://10.20.2.217:8443 --insecure-skip-tls-verify
 /usr/local/sbin/oc project devops-training
-
+#Commented for auto-trigger
 #/usr/local/sbin/oc delete all --selector app=eureka-server
 /usr/local/sbin/oc delete all --selector app=microservice
 /usr/local/sbin/oc delete all --selector app=microservice2
