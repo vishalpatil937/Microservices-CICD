@@ -11,7 +11,7 @@
 	<modules>
 		<module>APIGateway</module>
 		<module>EurekaServer</module>
-		<module>microservice2</module>
+		<!--<module>microservice2</module> -->
 		<module>MIcroservices</module>
 		<module>currency-conversion</module>
 		<module>forex-service</module>
